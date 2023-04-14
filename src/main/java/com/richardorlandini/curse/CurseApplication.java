@@ -9,5 +9,5 @@ public class CurseApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CurseApplication.class, args);
 	}
-
+	//aula 305.
 }
