@@ -1,5 +1,6 @@
 package com.richardorlandini.curse.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -20,6 +21,8 @@ public class Product  implements Serializable {
     private String description;
     private double price;
     private String imgUrl;
+    @OneToMany(mappedBy = "id.product") // vou até o campo id do Orderm item, e dentro dentro dele entramos na classe do tipo do id. la temos um atributo product
+    private Set<OrderItem> items = new HashSet<>();
     @ManyToMany
     @JoinTable(name = "tb_product_category",
             joinColumns = @JoinColumn(name = "product_id"),
@@ -80,7 +83,14 @@ public class Product  implements Serializable {
     public Set<Category> getCategories() {
         return categories;
     }
-
+    @JsonIgnore
+    public Set<Order> getOrders(){
+        Set<Order> set = new HashSet<>();
+        for (OrderItem x : items){
+            set.add(x.getOrder());  //pegando o objeto order, assosiado ao orderItem.
+        }
+        return set;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
