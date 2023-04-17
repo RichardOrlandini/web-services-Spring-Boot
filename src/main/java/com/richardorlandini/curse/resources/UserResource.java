@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
-    @Autowired
+    @Autowired // -> anotation
     private UserService service;
     //Gets: recuperar dados do bd
     @GetMapping
@@ -34,6 +34,15 @@ public class UserResource {
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(obj.getId()).toUri(); // para codigos 201
         return ResponseEntity.created(uri).body(obj);
+    }
+
+    //End point para deletar:
+
+    @DeleteMapping(value = "/{id}")
+    // a resposta da requisição não vai devolver nada.
+    public  ResponseEntity<Void> delete(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
 
