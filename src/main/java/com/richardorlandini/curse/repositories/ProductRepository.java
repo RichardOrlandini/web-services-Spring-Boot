@@ -1,4 +1,4 @@
-package com.richardorlandini.curse.repositoryes;
+package com.richardorlandini.curse.repositories;
 
 import com.richardorlandini.curse.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;

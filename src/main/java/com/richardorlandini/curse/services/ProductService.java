@@ -1,7 +1,7 @@
 package com.richardorlandini.curse.services;
 
 import com.richardorlandini.curse.entities.Product;
-import com.richardorlandini.curse.repositoryes.ProductRepository;
+import com.richardorlandini.curse.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

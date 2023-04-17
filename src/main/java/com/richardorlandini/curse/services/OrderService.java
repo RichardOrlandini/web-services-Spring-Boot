@@ -1,8 +1,7 @@
 package com.richardorlandini.curse.services;
 
 import com.richardorlandini.curse.entities.Order;
-import com.richardorlandini.curse.repositoryes.OrderRepository;
-import com.richardorlandini.curse.repositoryes.UserRepository;
+import com.richardorlandini.curse.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
