@@ -25,10 +25,21 @@ public class UserService {
     public User insert(User obj){
        return repository.save(obj); // o salve por padrão retorna um obj salvo
     }
-
     public void delete(Long id) {
         repository.deleteById(id);
     }
 
+    public User update(Long id, User obj){
+        User entity = repository.getReferenceById(id); // o getReferenceById serve instanciar um obj, para trabalharmos e depois efetuarmos uma operação no bd
+        updateData(entity, obj);
+        return repository.save(entity);
+    }
+
+    private void updateData(User entity, User obj) {
+        entity.setName(obj.getName());
+        entity.setEmail(obj.getEmail());
+        entity.setPhone(obj.getPhone());
+
+    }
 
 }
