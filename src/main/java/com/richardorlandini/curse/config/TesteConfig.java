@@ -1,14 +1,8 @@
 package com.richardorlandini.curse.config;
 
-import com.richardorlandini.curse.entities.Category;
-import com.richardorlandini.curse.entities.Order;
-import com.richardorlandini.curse.entities.Product;
-import com.richardorlandini.curse.entities.User;
+import com.richardorlandini.curse.entities.*;
 import com.richardorlandini.curse.entities.enums.OrderStatus;
-import com.richardorlandini.curse.repositories.CategoryRepositories;
-import com.richardorlandini.curse.repositories.OrderRepository;
-import com.richardorlandini.curse.repositories.ProductRepository;
-import com.richardorlandini.curse.repositories.UserRepository;
+import com.richardorlandini.curse.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +26,9 @@ public class TesteConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
 
     @Override
@@ -68,6 +65,13 @@ public class TesteConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
     }
 
 
