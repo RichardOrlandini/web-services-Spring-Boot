@@ -38,6 +38,13 @@ public class Order implements Serializable {
         this.client = client;
         setOrderStatus(orderStatus);
     }
+    public Double getTotal() {
+        double sum = 0.0;
+        for (OrderItem x : items) {
+            sum += x.getSubTotal();
+        }
+        return sum;
+    }
 
     public Long getId() {
         return id;
@@ -85,13 +92,7 @@ public class Order implements Serializable {
         this.payment = payment;
     }
 
-    public Double getTotal() {
-        double sum = 0.0;
-        for (OrderItem x : items) {
-            sum += x.getSubTotal();
-        }
-        return sum;
-    }
+
 
     @Override
     public int hashCode() {
