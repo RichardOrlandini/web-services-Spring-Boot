@@ -2,6 +2,7 @@ package com.richardorlandini.curse.services;
 
 import com.richardorlandini.curse.entities.User;
 import com.richardorlandini.curse.repositories.UserRepository;
+import com.richardorlandini.curse.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,8 @@ public class UserService {
 
     public User findById(Long id) {
        Optional<User> obj = repository.findById(id);
-       return obj.get();//retornando um obj do tipo user
+       return obj.orElseThrow( () -> new ResourceNotFoundException(id)); //tentantiva de buscar o user.
+        //retornando um obj do tipo user
     }
 
     public User insert(User obj){
